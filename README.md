@@ -562,6 +562,32 @@ For more information about the payload, refer to: [Till Payment Documentation](h
 
 For more information about the card data, refer to: [Omnipay Credit Card Documentation](https://github.com/thephpleague/omnipay/tree/v2.3.1#credit-card--payment-form-input)
 
+### Accepting Notification
+
+```php
+
+$gateway = Omnipay\Omnipay::create('TillPayments');
+
+// The security key must be provided, either by setting it directly or as a param in the initialize function.
+// It is used to verify the X-Signature header sent by Till to ensure the request hasn't been tampered with.
+$gateway->setSecurityKey();
+
+// $request will capture the POST data sent by Till
+$request = $gateway->acceptNotification(); 
+
+// The raw data sent is available:
+$data = $request->getData();
+
+// Provides the result of the signature verification.
+// If this returns false then the data cannot be trusted.
+$request->isSignatureValid();
+
+// Process payment here...
+
+// Responds to Till with a 200 OK
+$notificationResponse = $notificationRequest->send();
+$notificationResponse->acknowledge();
+```
 
 ### Payout Transaction
 
@@ -732,10 +758,6 @@ $gateway->createCard([
 Coming soon
 
 ### Schedule
-
-Coming soon
-
-### Accepting Notification
 
 Coming soon
 
