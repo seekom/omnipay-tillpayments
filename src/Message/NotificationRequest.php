@@ -201,8 +201,12 @@ class NotificationRequest extends AbstractRequest implements NotificationInterfa
 
     public function getExpiryDate(): ?DateTime
     {
+        if (!$this->getExpiryMonth() && !$this->getExpiryYear()) {
+            return null;
+        }
+
         $expiryDate = new DateTime();
-        $expiryDate->setDate($this->getExpiryMonth(), $this->getExpiryYear(), 1);
+        $expiryDate->setDate($this->getExpiryYear(), $this->getExpiryMonth(), 1);
         $expiryDate->modify('last day of this month');
 
         return $expiryDate;
