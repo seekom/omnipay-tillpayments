@@ -75,6 +75,7 @@ abstract class AbstractStatusRequest extends AbstractRequest
 
         // This request uses the REST endpoint and requires the JSON content type header
         $httpResponse = $this->httpClient->request('GET', $this->getEndpoint(), [
+            'http_errors' => false,
             'headers' => $this->buildHeaders($jsonBody),
             'body' => $jsonBody,
             'curl' => $this->getProxyConfig()
