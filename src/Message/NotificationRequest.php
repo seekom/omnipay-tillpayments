@@ -169,9 +169,28 @@ class NotificationRequest extends AbstractRequest implements NotificationInterfa
         return $this->getValue('paymentMethod');
     }
 
+    /**
+     * Returns the transaction amount exclusive of surcharge
+     */
     public function getAmount(): ?string
     {
         return $this->getValue('amount');
+    }
+
+    /**
+     * Returns the transaction surcharge amount
+     */
+    public function getSurchargeAmount(): ?string
+    {
+        return $this->getValue('surchargeAmount');
+    }
+
+    /**
+     * Returns the transaction amount + surcharge amount
+     */
+    public function getTotalAmount(): ?string
+    {
+        return $this->getValue('totalAmount');
     }
 
     public function getCurrency(): ?string
