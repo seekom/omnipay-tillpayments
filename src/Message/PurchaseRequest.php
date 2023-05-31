@@ -25,6 +25,10 @@ class PurchaseRequest extends AbstractTransactionRequest
         $data['amount'] = $this->getAmount();
         $data['currency'] = $this->getCurrency();
 
+        if ($surchargeAmount = $this->getSurchargeAmount()) {
+            $data['surchargeAmount'] = $surchargeAmount;
+        }
+
         if($referenceUuid = $this->getReferenceUuid()) {
             $data['referenceUuid'] = $referenceUuid;
         }

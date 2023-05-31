@@ -168,6 +168,20 @@ abstract class AbstractTransactionRequest extends AbstractRequest
         return $this->setParameter('referenceUuid', $value);
     }
 
+    public function getSurchargeAmount() {
+        $surchargeAmount = $this->getParameter('surchargeAmount');
+
+        if ($surchargeAmount) {
+            $surchargeAmount = $this->formatCurrency($surchargeAmount);
+        }
+
+        return $surchargeAmount;
+    }
+
+    public function setSurchargeAmount($value) {
+        return $this->setParameter('surchargeAmount', $value);
+    }
+
     /**
      * @return mixed
      */
