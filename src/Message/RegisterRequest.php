@@ -48,6 +48,9 @@ class RegisterRequest extends AbstractTransactionRequest
             $data['description'] = $description;
         }
 
+        if ($transactionIndicator = $this->getTransactionIndicator()) {
+            $data['transactionIndicator'] = $transactionIndicator;
+        }
 
         if($customer = $this->getCustomerData()) {
             $data['customer'] = $customer;
